@@ -1,0 +1,33 @@
+﻿@model LetsTweet.ViewModels.IndexViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Bem Vindo ao Let's Tweet</h1>
+    <form asp-controller="Home" asp-action="SaveTweet">
+        @*aqui salta o tweet pro httppost SaveTweet*@
+        <div class="form-group">
+            <textarea asp-for="@Model.Tweet.Text"></textarea>
+            <span asp-validation-for="@Model.Tweet"></span>
+            <input type="submit" value="Tweet" />
+        </div>
+    </form>
+
+    <form asp-controller="Home" asp-action="Index">
+        @*aqui salta o tweet pro httppost SaveTweet*@
+        <div class="form-group">
+            <input asp-for="@Model.Search"/>
+            <input type="submit" value="Search" />
+        </div>
+    </form>
+</div>
+
+
+
+@*--mostrar a listagem dos tweets--*@
+@foreach (var tweet in Model.Tweets)
+            {
+                 <div><span>@tweet.Text</span></div>
+            }
